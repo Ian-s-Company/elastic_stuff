@@ -1,0 +1,100 @@
+#!/usr/bin/python
+
+DOCUMENTATION='''
+
+module: elastic_kibana_settings
+
+author: Ian Scott
+
+short_description: Set Elastic Kibana Settings
+
+description: 
+  - Set Elastic Kibana Settings
+
+requirements:
+  - python3
+
+options:
+  host:
+    description: ECE Host
+    type: str
+  port:
+    description: ECE Port
+    type: str
+  username:
+    description: ECE Username
+    type: str
+  password:
+    description: ECE Password
+    type: str
+  deployment_info:
+    description: Deployment Information
+    type: dict
+    suboptions:
+      deployment_id:
+        required: False
+        description: ECE Deployment ID
+        type: str
+      deployment_name:
+        required: False
+        description: ECE Deployment Name
+        type: str
+      resource_type:
+        description: "Type or Resource, most likely kibana"
+        type: str
+      ref_id:
+        description: "REF ID for kibana cluster, most likely main-kibana"
+        type: str
+      version:
+        description: Deployment Kibana Version
+        type: str
+'''
+from ansible.module_utils.basic import _ANSIBLE_ARGS, AnsibleModule
+#from ansible.module_utils.basic import *
+
+import sys
+import os
+util_path = new_path = f'{os.getcwd()}/plugins/module_utils'
+sys.path.append(util_path)
+from kibana import Kibana
+
+results = {}
+
+def main():
+
+    module_args=dict(   
+        host=dict(type='str',required=True),
+        port=dict(type='int', default=9243),
+        username=dict(type='str', required=True),
+        password=dict(type='str', no_log=True, required=True),   
+        verify_ssl_cert=dict(type='bool', default=True),
+        space_id=dict(type='str', default='default'),
+        settings=dict(type='dict'),
+        deployment_info=dict(type='dict', default=None)
+    )
+    argument_dependencies = []
+        #('state', 'present', ('enabled', 'alert_type', 'conditions', 'actions')),
+        #('alert-type', 'metrics_threshold', ('conditions'))
+    
+    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+
+    results['changed'] = False
+    
+    kibana = Kibana(module)
+    space_id = module.params.get('space_id')
+    new_settings = module.params.get('settings')
+    
+    if new_settings:
+      results['kibana_settings_status'] = "Kibana Settings found"
+      kibana_settings = kibana.update_kibana_settings(new_settings, space_id = space_id)
+      results['kibana_settings_object'] = kibana_settings
+    else:
+      results['kibana_settings_status'] = "Integration Package NOT found"
+      results['kibana_settings_object'] = ""
+    
+    module.exit_json(**results)
+
+if __name__ == "__main__":
+    main()
+    
+     

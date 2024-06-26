@@ -1,0 +1,17 @@
+This repository contains a set of standardized, reusable GitHub Actions workflows designed to streamline the CI/CD processes for the IS Dev team. These workflows cover various aspects of the development lifecycle, including building and pushing Docker images, running tests, deploying to Kubernetes, and sending notifications.
+
+Available Workflows
+workflow1.yml: Test 1
+
+Usage
+To use these workflows in your project, reference them in your GitHub Actions workflow file using the uses keyword. For example:
+
+jobs:
+  build:
+    uses: <repo org>/<repo name>/.github/workflows/<workflow name>.yml@v1.0.0
+    with:
+      tags: myapp:latest
+    secrets:
+      IS_DOCKER_HUB_USERNAME: ${{ USERNAME }}
+      IS_DOCKER_HUB_PASSWORD: ${{ PASSWORD }}
+Refer to each workflow file for specific input parameters and required secrets.
