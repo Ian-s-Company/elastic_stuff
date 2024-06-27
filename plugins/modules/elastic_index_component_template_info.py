@@ -56,11 +56,11 @@ options:
 from ansible.module_utils.basic import _ANSIBLE_ARGS, AnsibleModule
 #from ansible.module_utils.basic import *
 
-import sys
-import os
-util_path = new_path = f'{os.getcwd()}/plugins/module_utils'
-sys.path.append(util_path)
-from kibana import Kibana
+  import sys
+  import os
+  util_path = new_path = f'{os.getcwd()}/plugins/module_utils'
+  sys.path.append(util_path)
+  from elastic import Elastic
 
 results = {}
 
