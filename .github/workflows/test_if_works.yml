@@ -19,6 +19,6 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Display Global Var
-        run: echo ${{env.VARIABLE_TEST_1}}
+        run: echo ${{ env.VARIABLE_TEST_1 }}
       - name: Display Job Vars
         run: echo $JOB_TEST_VAR
