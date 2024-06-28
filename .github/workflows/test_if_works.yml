@@ -4,7 +4,8 @@ on: [push]
 
 jobs:
   build:
-
+    env:
+      JOB_TEST_VAR: 'Testing Job Var'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,6 +17,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          variable_test_var: ${{env.VARIABLE_TEST_1}}
+          job_test_var: ${{env.JOB_TEST_VAR}}
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
