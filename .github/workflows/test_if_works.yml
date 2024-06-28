@@ -15,10 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          variable_test_var: ${{env.VARIABLE_TEST_1}}
-          job_test_var: ${{env.JOB_TEST_VAR}}
+
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
+      - name: Display Vars
+        run: echo $VARIABLE_TEST_1 $JOB_TEST_VAR
