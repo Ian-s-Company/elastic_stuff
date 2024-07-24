@@ -4,3 +4,4 @@ tmp
 plugins/module_utils/__pycache__/*
 *.tar.gz
 /testing/
+__pycache__/*
