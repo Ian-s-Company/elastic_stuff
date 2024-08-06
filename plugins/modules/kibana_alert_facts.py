@@ -16,7 +16,7 @@ short_description: get info on a kibana alert
 
 version_added: 2.11.1
 
-author: Mike Garuccio (@mgaruccio)
+author:  Ian Scott
 
 requirements:
   - python3
