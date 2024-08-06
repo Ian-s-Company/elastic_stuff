@@ -14,7 +14,7 @@ short_description: Create or delete alerts in Kibana
 
 version_added: 2.11.1
 
-author: Mike Garuccio (@mgaruccio)
+author:  Ian Scott
 
 requirements:
   - python3
