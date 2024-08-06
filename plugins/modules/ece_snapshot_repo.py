@@ -14,7 +14,7 @@ short_description: Create or delete a snapshot repository
 
 version_added: '2.9'
 
-author: Mike Garuccio (@mgaruccio)
+author:  Ian Scott
 
 requirements:
   - python3
