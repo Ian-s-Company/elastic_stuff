@@ -16,7 +16,7 @@ short_description: ingest pipeline management for elastic
 
 version_added: 2.1.0
 
-author: Mike Garuccio (@mgaruccio)
+author: Ian Scott
 
 requirements:
   - python3
