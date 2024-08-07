@@ -1,3 +1,6 @@
+# Since I don't have an instance of Elastic or Ansible it is not really possible to test the code so this is just a placeholder for an actual test.
+
+
 import pytest
 
 @pytest.mark.parametrize(
